@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gameUISkin_v0" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<ns1:Main width="720" height="1280" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group width="720" height="1280" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+			<e:Image width="720" height="1280" anchorOffsetX="0" anchorOffsetY="0" y="0" x="0" fillMode="scale" source="bg" locked="true"/>
+			<e:Button label="" x="0" y="0" anchorOffsetX="0" width="110" anchorOffsetY="0" height="85" locked="true">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="back_button"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+			</e:Button>
+			<e:Button label="" x="497.67" y="0" anchorOffsetX="110" width="110" anchorOffsetY="0" height="87" locked="true">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="paytable_button"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+			</e:Button>
+			<e:RadioButton label="" x="412" y="88" anchorOffsetX="0" width="81" anchorOffsetY="0" height="63" locked="true">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="mute_button_enable_type8_png" source.down="mute_button_disable_type8_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:RadioButton>
+			<e:Label id="yourMoney" text="" x="156.33" y="92.33" anchorOffsetX="0" width="310" anchorOffsetY="0" height="50" verticalAlign="middle" textAlign="center" locked="true"/>
+			<e:Label id="winMoney" text="" x="79" y="188" anchorOffsetX="0" width="335" anchorOffsetY="0" height="52.67" verticalAlign="middle" textAlign="center" locked="true"/>
+			<e:Group width="364" height="540" x="-110" y="110" scaleX="1" scaleY="1" anchorOffsetX="-182" anchorOffsetY="-160" locked="true">
+			<e:Group width="364" height="540" x="0" y="0" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" locked="true">
+				<e:Image width="20" height="290" x="305" y="90" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_png"/>
+				<e:Image width="20" height="290" x="40" y="90" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_png"/>
+				<e:Image width="280" height="20" x="42" y="140" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_png"/>
+				<e:Image width="280" height="20" x="42" y="190" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_png"/>
+				<e:Image width="280" height="20" x="42" y="240" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_png"/>
+				<e:Image width="280" height="20" x="42" y="290" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_png"/>
+			</e:Group>
+			<e:Group width="364" height="540" x="0" y="0" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" locked="true">
+				<e:Image width="20" height="70" x="305" y="90" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="70" x="40" y="90" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="284.5" height="20" x="40" y="140" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="284.5" height="20" x="324.4" y="140" scaleX="1" scaleY="1" anchorOffsetX="284.4" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="30" x="305" y="160" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="30" x="40" y="160" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="285" height="20" x="40" y="190" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="285" height="20" x="325" y="190" scaleX="1" scaleY="1" anchorOffsetX="285" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="30" x="305" y="210" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="30" x="40" y="210" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="285" height="20" x="40" y="240" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="285" height="20" x="325" y="240" scaleX="1" scaleY="1" anchorOffsetX="285" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="30" x="305" y="260" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="30" x="40" y="260" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="285" height="20" x="40" y="290" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="285" height="20" x="325" y="290" scaleX="1" scaleY="1" anchorOffsetX="285" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="72.67" x="305" y="310" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+				<e:Image width="20" height="79.33" x="40" y="310" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="line_b_png"/>
+			</e:Group>
+			<e:Group width="364" height="540" x="0" y="0" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" locked="true">
+				<e:Image width="100" height="100" x="0" y="0" source="ig_x_gray_icon"/>
+				<e:Image width="100" height="100" x="364" y="0" anchorOffsetX="100" source="ig_x_gray_icon"/>
+				<e:Image width="100" height="100" x="0" y="474" anchorOffsetX="0" anchorOffsetY="100" source="ig_single_gray_icon"/>
+				<e:Image width="100" height="100" x="364" y="474" anchorOffsetX="100" anchorOffsetY="100" source="ig_dub_gray_icon"/>
+			</e:Group>
+			</e:Group>
+			<e:Group width="485" height="290" x="10" bottom="192" locked="true">
+			<e:Label text="" x="156.16" y="96.34" anchorOffsetX="0" width="272.67" anchorOffsetY="0" height="48.66" textAlign="center" verticalAlign="middle"/>
+			<e:Button label="" x="242.5" y="205" width="225" height="85">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="play_button_idle "/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button label="" x="111.33" y="205" width="125" height="85">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="auto_button_disable" source.down="auto_button_activate"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button label="" x="370" y="7" width="80" height="80" scaleX="1" scaleY="1">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="+_button_idle" source.down="+_button_pressed"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button label="" x="27" y="7" width="80" height="80" scaleX="1" scaleY="1">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="-_button_idle" source.down="-_button_pressed"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Label text="" x="122.67" y="23" anchorOffsetX="0" width="227.33" anchorOffsetY="0" height="54" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1"/>
+			</e:Group>
+			<e:Group width="188" height="1206" x="516" y="63" anchorOffsetX="0" anchorOffsetY="0" locked="true">
+			<e:Group width="185" height="180" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Button x="0" y="0" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="90" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="185" height="180" x="2.5" y="250" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Button x="0" y="0" scaleX="1" scaleY="1" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="90" scaleX="1" scaleY="1" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="185" height="180" x="2.5" y="500" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Button x="0" y="0" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="90" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="185" height="360" x="2.5" y="750" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Button x="0" y="4" scaleX="1" scaleY="1" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="94" scaleX="1" scaleY="1" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="184" scaleX="1" scaleY="1" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="274" scaleX="1" scaleY="1" width="185" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="bet_button"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" visible="false">
+				<e:Button x="-3" y="-5" width="90" height="90" scaleX="1.1" scaleY="1.1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-3" y="85" width="90" height="90" scaleX="1.1" scaleY="1.1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button x="-3" y="245" scaleX="1.1" scaleY="1.1" width="90" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-3" y="335" scaleX="1.1" scaleY="1.1" width="90" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button x="-3" y="495" width="90" height="90" scaleX="1.1" scaleY="1.1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-3" y="585" width="90" height="90" scaleX="1.1" scaleY="1.1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button x="-3" y="760" scaleX="1.1" scaleY="1.1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect2"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-3" y="845" scaleX="1.1" scaleY="1.1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect2"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-3" y="940" scaleX="1.1" scaleY="1.1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect2"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-3" y="1030" scaleX="1.1" scaleY="1.1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="win_effect2"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+				<e:Button x="0" y="0" width="90" height="90" scaleX="1" scaleY="1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_single_icon"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="90" width="90" height="90" scaleX="1" scaleY="1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_dub_icon"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button x="0" y="250" scaleX="1" scaleY="1" width="90" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_3_icon"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="340" scaleX="1" scaleY="1" width="90" height="90">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_4_icon"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button x="0" y="500" width="90" height="90" scaleX="1" scaleY="1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_left_icon"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="590" width="90" height="90" scaleX="1" scaleY="1">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_right_icon"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button x="0" y="765" scaleX="1" scaleY="1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_single_icon_3"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="850" scaleX="1" scaleY="1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_single_icon_4"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="945" scaleX="1" scaleY="1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_dub_icon_3"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="0" y="1035" scaleX="1" scaleY="1" width="90" height="76">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="sb_bud_icon_4"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="-12.14" y="1115.3" scaleX="1" scaleY="1" width="205" height="100" anchorOffsetX="0">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="cancel_button_idle" source.down="cancel_button_pressed"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+				<e:Label text="" x="95" y="15" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="105" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="265" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="355" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="510" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="600" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="765" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="855" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="945" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+				<e:Label text="" x="95" y="1035" width="75" height="65" verticalAlign="middle" textAlign="center"/>
+			</e:Group>
+			</e:Group>
+			<e:Group width="500" height="182" x="1.33" y="1092" anchorOffsetX="0" anchorOffsetY="0" locked="true">
+			<e:Group width="500" height="182" x="0" y="0">
+				<e:Image width="470" height="180" x="12" y="0" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" blendMode="normal" source="record_box 1"/>
+				<e:Button label="" x="355" y="5" anchorOffsetX="0" width="120" height="98">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="enlarge_record_button_idle" source.down="enlarge_record_button_pressed"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+				<e:Button label="" x="170" y="5" width="180" height="98">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="delet record_idle" source.down="delet record_pressed"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+				</e:Button>
+			</e:Group>
+			<e:Group width="456" height="55" x="18.67" y="110.26999999999998" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			</e:Group>
+		</e:Group>
+	</ns1:Main>
+</e:Skin>

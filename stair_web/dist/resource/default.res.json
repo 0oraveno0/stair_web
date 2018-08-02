@@ -1,0 +1,51 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,UI_6_json",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"name": "UI_json",
+			"type": "sheet",
+			"url": "art/UI.json",
+			"subkeys": "sb_right_icon,sb_single_icon,sb_single_icon_3,sb_single_icon_4,speed_up_button_disable,toright_arrow,win_effect,win_effect2,-_button_idle,-_button_pressed,+_button_idle,+_button_pressed,auto_button_activate,auto_button_disable,back_button,bet_button,cancel_button_idle,cancel_button_pressed,close_result_button_idle,close_result_button_pressed,delet record_idle,delet record_pressed,enlarge_record_button_idle,enlarge_record_button_pressed,ig_arrow_black_icon,ig_dub_black_icon,ig_dub_gray_icon,ig_single_black_icon,ig_single_gray_icon,ig_x_gray_icon,loading...,paytable_button ,play_button_idle,sb_3_icon,sb_4_icon,sb_bud_icon_4,sb_dub_icon,sb_dub_icon_3,sb_left_icon"
+		},
+		{
+			"name": "UI_2_json",
+			"type": "sheet",
+			"url": "art/UI_2.json",
+			"subkeys": "result_as,way,win_amount,back_page_button_idle,back_page-button_pressed copy,close_button_idle,close_button_pressed,next_page-button_idle,next_page-button_pressed,result_text_bg,record_box 1"
+		},
+		{
+			"name": "UI_3_json",
+			"type": "sheet",
+			"url": "art/UI_3.json",
+			"subkeys": "pay_table_page1,pay_table_page2"
+		},
+		{
+			"name": "UI_4_json",
+			"type": "sheet",
+			"url": "art/UI_4.json",
+			"subkeys": "pay_table_page3,pay_table_page42"
+		},
+		{
+			"name": "UI_5_json",
+			"type": "sheet",
+			"url": "art/UI_5.json",
+			"subkeys": "win_txt_bowbg,bg"
+		},
+		{
+			"name": "UI_6_json",
+			"type": "sheet",
+			"url": "art/UI_6.json",
+			"subkeys": "loading_bar_zero,bg_loading_page,loading_bar_100"
+		}
+	]
+}
