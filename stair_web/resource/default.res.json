@@ -1,11 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,UI_6_json",
+			"keys": "UI_6_json",
 			"name": "preload"
 		},
 		{
-			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png",
+			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json",
 			"name": "resource"
 		}
 	],
