@@ -42,7 +42,6 @@ var LoadingUI = (function (_super) {
         this.addChild(this.textField);
     };
     LoadingUI.prototype.setProgress = function (current, total) {
-        console.log(current, total);
         this.loadingBar.width = current / total * 450;
         this.textField.text = (current / total * 100).toFixed(1) + "%";
     };

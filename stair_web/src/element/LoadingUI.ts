@@ -39,7 +39,6 @@
     }
     
 	public setProgress(current: number, total: number): void {
-        console.log(current,total);
         this.loadingBar.width = current / total * 450;
         this.textField.text = `${(current / total * 100).toFixed(1)}%`;
     }

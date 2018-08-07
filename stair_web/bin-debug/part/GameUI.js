@@ -14,10 +14,30 @@ var GameUI = (function (_super) {
         var _this = _super.call(this) || this;
         _this.service = service;
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
-        _this.skinName = "resource/custom_skins/gameUISkin_v0.exml";
+        _this.skinName = "resource/custom_skin/gameUISkin_v0.exml";
+        _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
         return _this;
     }
     GameUI.prototype.uiCompHandler = function () {
+        this.playBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playBtnHandler, this);
+    };
+    GameUI.prototype.playBtnHandler = function () {
+        this.service._bet((function (that) {
+            return function (event) {
+                return that.betCompleteHandler.bind(that)(event);
+            };
+        })(this), function (error) {
+            console.log(error);
+        });
+    };
+    GameUI.prototype.betCompleteHandler = function (event) {
+        console.log(event);
+        console.log(event.currentTarget);
+        var request = event.currentTarget;
+        console.log(request.response);
+        this.gameTotalData = JSON.parse(request.response);
+        console.log("this.gameTotalData");
+        console.log(this.gameTotalData);
     };
     return GameUI;
 }(eui.Component));
