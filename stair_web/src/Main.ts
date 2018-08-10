@@ -111,7 +111,7 @@
             this.stage.addChild(this.loadingView);
             //加载其他资源
             RES.loadGroup("resource");
-            console.log(this.loadingView);
+            //console.log(this.loadingView);
         } else if (event.groupName == "resource") {
             this.stage.removeChild(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
@@ -185,19 +185,4 @@
      * 描述文件加载成功，开始播放动画
      * Description file loading is successful, start to play the animation
      */
-    private startAnimation(result: Array<any>): void {
-
-    }
-
-    /**
-     * 点击按钮
-     * Click the button
-     */
-    private onButtonClick(e: egret.TouchEvent) {
-        let panel = new eui.Panel();
-        panel.title = "Title";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.addChild(panel);
-    }
 }

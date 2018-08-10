@@ -43,6 +43,10 @@ var Main = (function (_super) {
         _this.isThemeLoadEnd = false;
         _this.isResourceLoadEnd = false;
         return _this;
+        /**
+         * 描述文件加载成功，开始播放动画
+         * Description file loading is successful, start to play the animation
+         */
     }
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
@@ -102,7 +106,7 @@ var Main = (function (_super) {
             this.stage.addChild(this.loadingView);
             //加载其他资源
             RES.loadGroup("resource");
-            console.log(this.loadingView);
+            //console.log(this.loadingView);
         }
         else if (event.groupName == "resource") {
             this.stage.removeChild(this.loadingView);
@@ -163,23 +167,6 @@ var Main = (function (_super) {
         var texture = RES.getRes(name);
         result.texture = texture;
         return result;
-    };
-    /**
-     * 描述文件加载成功，开始播放动画
-     * Description file loading is successful, start to play the animation
-     */
-    Main.prototype.startAnimation = function (result) {
-    };
-    /**
-     * 点击按钮
-     * Click the button
-     */
-    Main.prototype.onButtonClick = function (e) {
-        var panel = new eui.Panel();
-        panel.title = "Title";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.addChild(panel);
     };
     return Main;
 }(eui.UILayer));
