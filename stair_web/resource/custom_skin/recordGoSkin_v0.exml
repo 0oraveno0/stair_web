@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="recordGoSkin_v0" width="465" height="55" xmlns:e="http://ns.egret.com/eui">
+    <e:Group width="465" height="55" x="0" y="0">
+			<e:Image width="465" height="55" x="0" y="0" source="grey_png" visible="{record_data.4}"/>
+        <e:Group width="180" height="55" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
+            <e:Image width="55" height="55" x="0" y="0" source="{record_data.0}"/>
+            <e:Image width="55" height="55" x="60" y="0" source="{record_data.1}"/>
+            <e:Image width="55" height="55" x="120" y="0" source="{record_data.2}"/>
+        </e:Group>
+        <e:Label text="{record_data.3}" x="185" y="0" anchorOffsetY="0" height="55" anchorOffsetX="0" width="260" verticalAlign="middle" textAlign="right" size="21"/>
+    </e:Group>
+</e:Skin>

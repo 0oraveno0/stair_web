@@ -15,13 +15,23 @@ var GameUI = (function (_super) {
         _this.service = service;
         _this.pay_table_page_image_array = ["pay_table_page1", "pay_table_page2", "pay_table_page3", "pay_table_page42"];
         _this.pay_table_page_image = "pay_table_page1";
+        _this.record_img = ["record_box 1", "record_box 2_png"];
         _this.pay_table_next_btn_enable = true;
         _this.pay_table_back_btn_enable = false;
+        _this.record_bg_img_sprite = _this.record_img[0];
+        _this.record_bg_img_bool = true;
+        _this.mask_manager = {};
         _this.gamecode = "Stair";
         _this.bet_type = { "0": { n: 0, w: false },
             "1": { n: 0, w: false }, "2": { n: 0, w: false }, "3": { n: 0, w: false },
             "4": { n: 0, w: false }, "5": { n: 0, w: false }, "6": { n: 0, w: false },
             "7": { n: 0, w: false }, "8": { n: 0, w: false }, "9": { n: 0, w: false } };
+        _this.balance = 0;
+        _this.balance_text = "";
+        _this.winMoney = 0;
+        _this.winMoney_text = "";
+        _this.finalScore = 0;
+        _this.finalScore_text = "";
         _this.single_bet_array = [1, 2, 4, 5, 10, 20, 50];
         _this.single_bet = 1;
         _this.total_bet = 0;
@@ -52,6 +62,8 @@ var GameUI = (function (_super) {
             [1, 2, 4, 7, 9, 10, 12, 15, 17]
         ];
         _this.betNumberArray = [1, 2, 4, 5, 10, 20, 50];
+        _this.test = true;
+        _this.recordString = "";
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.uiCompHandler, _this);
         _this.skinName = "resource/custom_skin/gameUISkin_v0.exml";
         _this.load_data();
@@ -59,15 +71,21 @@ var GameUI = (function (_super) {
     }
     GameUI.prototype.load_data = function () {
         this.balance = 1000;
-        this.winMoney = egret.localStorage.getItem("winMoney");
+        this.balance_text = String(this.balance) + "元";
+        if (egret.localStorage.getItem("winMoney") != null) {
+            this.winMoney = Number(egret.localStorage.getItem("winMoney"));
+        }
+        this.winMoney_text = this.winMoney.toFixed(2) + "元";
         if (egret.localStorage.getItem("mute_toggle") == "true") {
             this.mute_toggle.selected = true;
         }
         else {
             this.mute_toggle.selected = false;
         }
+        this.setRecord(egret.localStorage.getItem("record"));
     };
     GameUI.prototype.uiCompHandler = function () {
+        this.draw_mask(this.record_content, "record");
         this.play_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playBtnHandler, this);
         this.reset_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.resetBtnHandler, this);
         this.auto_toggle.addEventListener(egret.TouchEvent.TOUCH_TAP, this.autoBtnHandler, this);
@@ -83,6 +101,17 @@ var GameUI = (function (_super) {
         this.pay_table_close_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.pay_tableBtnHandler, this);
         this.result_panel_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.result_panel_closeBtnHandler, this);
         this.bet_btn_addEventListener();
+    };
+    GameUI.prototype.draw_mask = function (t, string) {
+        if (this.mask_manager[string] != null) {
+            t.removeChild(this.mask_manager[string]);
+        }
+        this.mask_manager[string] = new egret.Shape();
+        this.mask_manager[string].graphics.beginFill(0x0000ff);
+        this.mask_manager[string].graphics.drawRoundRect(0, 0, t.width, t.height, 25);
+        this.mask_manager[string].graphics.endFill();
+        this.record_content.addChild(this.mask_manager[string]);
+        t.mask = this.mask_manager[string];
     };
     //Button
     GameUI.prototype.playBtnHandler = function () {
@@ -105,6 +134,7 @@ var GameUI = (function (_super) {
         this.play_btn.touchEnabled = false;
         this.loading = true;
         this.balance -= this.total_bet;
+        this.balance_text = String(this.balance) + "元";
         var _bet_type = "";
         for (var i = 0; i < 9; i++) {
             _bet_type += this.bet_type[String(i)].n + ",";
@@ -120,6 +150,9 @@ var GameUI = (function (_super) {
         }, function () { });
     };
     GameUI.prototype.resetBtnHandler = function () {
+        if (this.is_playing) {
+            return;
+        }
         for (var i = 0; i < 10; i++) {
             this.bet_type[String(i)].n = 0;
         }
@@ -127,11 +160,21 @@ var GameUI = (function (_super) {
         this.total_bet = 0;
     };
     GameUI.prototype.bet_btnHandler = function (evt) {
+        var _this = this;
         if (this.is_playing) {
             return;
         }
         this.bet_type[evt.target.name].n += 1;
         this.update_total_bet();
+        if (this.auto_playing) {
+            if (this.auto_playing) {
+                var Timer_1 = new egret.Timer(360, 1);
+                Timer_1.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
+                    Timer_1.stop();
+                    _this.playBtnHandler();
+                }, Timer_1.start());
+            }
+        }
     };
     GameUI.prototype.addBtnHandler = function () {
         if (this.is_playing || this.single_bet >= 50)
@@ -172,10 +215,32 @@ var GameUI = (function (_super) {
         }
     };
     GameUI.prototype.upBtnHandler = function () {
-        console.log("upBtnHandler");
+        if (this.test == true) {
+            this.test = false;
+            this.record_gp.height = 880;
+            this.record_gp.anchorOffsetY = 880;
+            this.record_bg_img_sprite = this.record_img[1];
+            this.record_bg_img.height = 872;
+            this.record_content.height = 750;
+            this.up_btn.rotation = 180;
+            this.draw_mask(this.record_content, "record");
+        }
+        else {
+            this.test = true;
+            this.record_gp.height = 182;
+            this.record_gp.anchorOffsetY = 182;
+            this.record_bg_img_sprite = this.record_img[0];
+            this.record_bg_img.height = 175;
+            this.record_content.height = 55;
+            this.up_btn.rotation = 0;
+            this.draw_mask(this.record_content, "record");
+        }
     };
     GameUI.prototype.clear_recordBtnHandler = function () {
-        console.log("clear_recordBtnHandler");
+        egret.localStorage.setItem("record", "");
+        this.record_content.removeChildren();
+        this.record_content.addChild(this.mask_manager["record"]);
+        console.log(this.record_content.numChildren);
     };
     GameUI.prototype.pay_tableBtnHandler = function (evt) {
         if (String(evt.target.name) == "true") {
@@ -275,7 +340,7 @@ var GameUI = (function (_super) {
         this.gameTotalData = JSON.parse(request.response);
         console.log("this.gameTotalData");
         console.log(this.gameTotalData);
-        console.log("balance = " + this.gameTotalData.data.balance);
+        console.log("balance = " + this.gameTotalData.data.balance.toFixed(2));
         if (this.gameTotalData.data.bouns_game != null) {
             console.log("bouns_game = " + this.gameTotalData.data.bouns_game);
         }
@@ -379,22 +444,36 @@ var GameUI = (function (_super) {
             for (var i = 0; i < 5; i++) {
                 _loop_1(i);
             }
-            this.winMoney += w_num;
-            egret.localStorage.setItem("winMoney", this.winMoney);
+            this.winMoney += Number(w_num.toFixed(2));
+            this.winMoney_text = w_num.toFixed(2) + "元";
+            this.balance = Number(this.gameTotalData.data.balance.toFixed(2));
+            this.balance_text = String(this.balance) + "元";
+            this.finalScore = Number(w_num.toFixed(2));
+            this.finalScore_text = w_num.toFixed(2) + "元";
+            egret.localStorage.setItem("winMoney", String(this.winMoney.toFixed(2)));
         }
         else {
             this.end_turn();
         }
+        var time = new Date;
+        var _record = (String(r_num) + "," +
+            String(time.getFullYear()) + "年" +
+            String(time.getMonth()) + "月" +
+            String(time.getDay()) + "日" +
+            String(time.getHours()) + "时" +
+            String(time.getMinutes()) + "分" +
+            String(time.getSeconds()) + "秒;");
+        this.setRecord(_record);
     };
     GameUI.prototype.end_turn = function () {
         var _this = this;
         this.is_playing = false;
         if (this.auto_playing) {
-            var Timer_1 = new egret.Timer(1, 1);
-            Timer_1.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
-                Timer_1.stop();
+            var Timer_2 = new egret.Timer(1, 1);
+            Timer_2.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
+                Timer_2.stop();
                 _this.playBtnHandler();
-            }, Timer_1.start());
+            }, Timer_2.start());
         }
         else {
             this.play_btn.touchEnabled = true;
@@ -419,6 +498,59 @@ var GameUI = (function (_super) {
             }
             _this._line_animation(Number(_this.gameTotalData.data.results));
         }, Timer.start());
+    };
+    GameUI.prototype.setRecord = function (value) {
+        if (value == "" || value == null) {
+            return;
+        }
+        var recordStringArray = value.split(';');
+        var StrArray = [];
+        for (var i = 0; i < recordStringArray.length - 1; i++) {
+            StrArray[i] = recordStringArray[i].split(',');
+        }
+        for (var i = 0; i < StrArray.length; i++) {
+            var record = new recordGo();
+            switch (StrArray[i][0]) {
+                case "0":
+                    record.record_data[String(0)] = this.circle_sprite.s;
+                    record.record_data[String(1)] = this.circle_sprite[String(3)];
+                    record.record_data[String(2)] = this.circle_sprite.r;
+                    break;
+                case "1":
+                    record.record_data[String(0)] = this.circle_sprite.m;
+                    record.record_data[String(1)] = this.circle_sprite[String(3)];
+                    record.record_data[String(2)] = this.circle_sprite.l;
+                    break;
+                case "2":
+                    record.record_data[String(0)] = this.circle_sprite.s;
+                    record.record_data[String(1)] = this.circle_sprite[String(4)];
+                    record.record_data[String(2)] = this.circle_sprite.l;
+                    break;
+                case "3":
+                    record.record_data[String(0)] = this.circle_sprite.m;
+                    record.record_data[String(1)] = this.circle_sprite[String(4)];
+                    record.record_data[String(2)] = this.circle_sprite.r;
+                    break;
+            }
+            record.record_data[String(3)] = StrArray[i][1];
+            record.record_data[String(4)] = this.record_bg_img_bool;
+            this.record_bg_img_bool = !this.record_bg_img_bool;
+            this.record_content.addChildAt(record, 0);
+        }
+        this.recordString += value;
+        var tmp = this.recordString.split(';');
+        var record_count = 20;
+        if (tmp.length > record_count) {
+            var loop = this.record_content.numChildren - record_count;
+            for (var i = 0; i < loop; i++) {
+                this.record_content.removeChildAt(this.record_content.numChildren - 1);
+            }
+            this.recordString = "";
+            for (var i = loop; i < tmp.length - 1; i++) {
+                this.recordString += tmp[i] + ";";
+            }
+        }
+        egret.localStorage.setItem("record", this.recordString);
     };
     return GameUI;
 }(eui.Component));

@@ -5,7 +5,7 @@
 			"name": "preload"
 		},
 		{
-			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json,grey_png",
+			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json,grey_png,record_box 2_png",
 			"name": "resource"
 		}
 	],
@@ -75,6 +75,11 @@
 			"url": "art/grey.png",
 			"type": "image",
 			"name": "grey_png"
+		},
+		{
+			"url": "art/record_box 2.png",
+			"type": "image",
+			"name": "record_box 2_png"
 		}
 	]
 }

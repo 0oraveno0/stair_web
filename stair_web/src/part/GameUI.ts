@@ -6,8 +6,6 @@
 	private auto_toggle: eui.ToggleButton;
 	private add_btn: eui.Button;
 	private sub_btn: eui.Button;
-	private up_btn: eui.Button;
-	private clear_record_btn: eui.Button;
 	private pay_table_btn: eui.Button;
 	private exit_btn: eui.Button;
 	private mute_toggle: eui.ToggleButton;
@@ -18,6 +16,7 @@
 	private pay_table_close_btn: eui.Button;
 	private pay_table_page_image_array = ["pay_table_page1","pay_table_page2","pay_table_page3","pay_table_page42"]
 	private pay_table_page_image:string = "pay_table_page1";
+	private record_img = ["record_box 1","record_box 2_png"];
 	private pay_table_next_btn_enable:boolean = true;
 	private pay_table_back_btn_enable:boolean = false;
 
@@ -38,6 +37,14 @@
 	private bet_btn_26: eui.Label;private bet_btn_27: eui.Label;private bet_btn_28: eui.Label;
 	private bet_btn_29: eui.Label;
 	
+	private record_bg_img:eui.Image;
+	private record_bg_img_sprite = this.record_img[0];
+	private	record_gp:eui.Group;
+	private	record_content:eui.Group;
+	private up_btn: eui.Button;
+	private clear_record_btn: eui.Button;
+	private record_bg_img_bool = true;
+	private mask_manager = {};
 	constructor(private service: GameService) {
 		super();
 		this.addEventListener(eui.UIEvent.COMPLETE, this.uiCompHandler, this);
@@ -47,15 +54,26 @@
 
 	public load_data(){
 		this.balance = 1000;
-		this.winMoney = egret.localStorage.getItem("winMoney");
+		this.balance_text = String(this.balance) + "元";
+		
+		if(egret.localStorage.getItem("winMoney") != null){
+			this.winMoney = Number(egret.localStorage.getItem("winMoney"));
+		}
+		this.winMoney_text = this.winMoney.toFixed(2) + "元";
+
 		if (egret.localStorage.getItem("mute_toggle") == "true"){
 			this.mute_toggle.selected = true;
 		}else{
 			this.mute_toggle.selected = false;
 		}
+
+		
+		this.setRecord(egret.localStorage.getItem("record"));
 	}
 
 	public uiCompHandler(){
+		this.draw_mask(this.record_content,"record")
+
 		this.play_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playBtnHandler, this);
 		this.reset_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.resetBtnHandler, this);
 		this.auto_toggle.addEventListener(egret.TouchEvent.TOUCH_TAP, this.autoBtnHandler, this);
@@ -74,6 +92,18 @@
 		this.bet_btn_addEventListener();
 	}
 
+	public draw_mask(t,string){
+		if(this.mask_manager[string] != null){
+			t.removeChild(this.mask_manager[string]);
+		}
+		this.mask_manager[string] = new egret.Shape();
+		this.mask_manager[string].graphics.beginFill(0x0000ff);
+		this.mask_manager[string].graphics.drawRoundRect(0,0,t.width,t.height,25);
+		this.mask_manager[string].graphics.endFill();
+		this.record_content.addChild(this.mask_manager[string]);
+		t.mask = this.mask_manager[string];
+	}
+
 	private gamecode = "Stair";
     public gameTotalData;
 
@@ -82,8 +112,10 @@
 						"4":{n:0,w:false},"5":{n:0,w:false},"6":{n:0,w:false},
 						"7":{n:0,w:false},"8":{n:0,w:false},"9":{n:0,w:false}};
 
-	private balance;
-	private winMoney;
+	private balance:number = 0; private balance_text = "";
+	private winMoney:number = 0; private winMoney_text = "";
+	private finalScore:number = 0; private finalScore_text = "";
+
 	private single_bet_array = [1,2,4,5,10,20,50];
 	public single_bet = 1;
 	public total_bet = 0;
@@ -115,6 +147,7 @@
 							];
 
     private betNumberArray = [ 1, 2, 4, 5, 10, 20, 50 ];
+	
 	//Button
 
 	public playBtnHandler() {
@@ -144,6 +177,7 @@
 		this.play_btn.touchEnabled = false;
 		this.loading = true;
 		this.balance -= this.total_bet;
+		this.balance_text = String(this.balance) + "元";
 		let _bet_type = "";
 		for(let i = 0;i<9;i++){
 			_bet_type += this.bet_type[String(i)].n + ",";
@@ -163,6 +197,10 @@
 	}
 
 	public resetBtnHandler() {
+		if(this.is_playing){
+			return;
+		}
+
 		for(let i = 0; i < 10 ;i++){
 			this.bet_type[String(i)].n = 0;
 		}
@@ -176,6 +214,17 @@
 		}
 		this.bet_type[evt.target.name].n += 1;
 		this.update_total_bet();
+
+		if(this.auto_playing){
+			if(this.auto_playing){
+				let Timer = new egret.Timer(360,1);
+				Timer.addEventListener(
+				egret.TimerEvent.TIMER_COMPLETE,() => {
+					Timer.stop();
+					this.playBtnHandler();
+				},Timer.start())
+			}
+		}
 	}
 
 	public addBtnHandler(){
@@ -224,11 +273,33 @@
 		}
 	}
 
+	private test = true;
 	public upBtnHandler() {
-		console.log("upBtnHandler");
+		if(this.test == true){
+			this.test = false;
+			this.record_gp.height = 880;
+			this.record_gp.anchorOffsetY = 880;
+			this.record_bg_img_sprite = this.record_img[1];
+			this.record_bg_img.height = 872;
+			this.record_content.height = 750;
+			this.up_btn.rotation = 180;
+			this.draw_mask(this.record_content,"record")
+		}else{
+			this.test = true;
+			this.record_gp.height = 182;
+			this.record_gp.anchorOffsetY = 182;
+			this.record_bg_img_sprite = this.record_img[0];
+			this.record_bg_img.height = 175;
+			this.record_content.height = 55;
+			this.up_btn.rotation = 0;
+			this.draw_mask(this.record_content,"record")
+		}
 	}
 	public clear_recordBtnHandler() {
-		console.log("clear_recordBtnHandler");
+		egret.localStorage.setItem("record","");
+		this.record_content.removeChildren();
+		this.record_content.addChild(this.mask_manager["record"]);
+		console.log(this.record_content.numChildren)
 	}
 	public pay_tableBtnHandler(evt) {
 		if(String(evt.target.name) == "true"){
@@ -341,14 +412,13 @@
 		this.gameTotalData = JSON.parse(request.response);
 		console.log("this.gameTotalData");
 		console.log(this.gameTotalData);
-		console.log("balance = " + this.gameTotalData.data.balance)
+		console.log("balance = " + this.gameTotalData.data.balance.toFixed(2))
 		if (this.gameTotalData.data.bouns_game != null){
 			console.log("bouns_game = " + this.gameTotalData.data.bouns_game)
 		}
 		console.log("moneyPool = " + this.gameTotalData.data.moneyPool)
 		console.log("results = " + this.gameTotalData.data.results)
 		console.log("finalScore = " + this.gameTotalData.data.finalScore)
-
 		this.result();
 	}
 
@@ -462,11 +532,29 @@
 					}
 				},Timer.start())
 			}
-			this.winMoney += w_num;
-			egret.localStorage.setItem("winMoney",this.winMoney);
+			this.winMoney += Number(w_num.toFixed(2));
+			this.winMoney_text = w_num.toFixed(2) + "元";
+
+			this.balance = Number(this.gameTotalData.data.balance.toFixed(2));
+			this.balance_text = String(this.balance) + "元";
+
+			this.finalScore = Number(w_num.toFixed(2));
+			this.finalScore_text = w_num.toFixed(2) + "元";
+
+			egret.localStorage.setItem("winMoney",String(this.winMoney.toFixed(2)));
 		} else {
 			this.end_turn();
 		}
+
+		let time = new Date;
+		let _record = (String(r_num) + "," + 
+						String(time.getFullYear()) + "年" +
+			String(time.getMonth()) + "月" +
+			String(time.getDay()) + "日" + 
+			String(time.getHours()) + "时" + 
+			String(time.getMinutes()) + "分" + 
+			String(time.getSeconds()) + "秒;");
+		this.setRecord(_record);
 	}
 
 	public end_turn(){
@@ -507,5 +595,65 @@
 				this._line_animation(Number(this.gameTotalData.data.results));
 			},
 		Timer.start())
+	}
+
+	private recordString = "";
+	private setRecord(value:String){
+		if(value == "" || value == null)
+		{
+			return;
+		}	
+		let recordStringArray = value.split(';');
+		let StrArray = [];
+		for (let i = 0; i < recordStringArray.length - 1; i++)
+		{
+			StrArray[i] = recordStringArray[i].split(',');
+		}
+		for(let i = 0; i< StrArray.length; i++)
+		{
+			let record = new recordGo();
+			switch (StrArray[i][0])
+			{
+				case "0":
+					record.record_data[String(0)] = this.circle_sprite.s;
+					record.record_data[String(1)] = this.circle_sprite[String(3)];
+					record.record_data[String(2)] = this.circle_sprite.r;
+					break;
+				case "1":
+					record.record_data[String(0)] = this.circle_sprite.m;
+					record.record_data[String(1)] = this.circle_sprite[String(3)];
+					record.record_data[String(2)] = this.circle_sprite.l;
+					break;
+				case "2":
+					record.record_data[String(0)] = this.circle_sprite.s;
+					record.record_data[String(1)] = this.circle_sprite[String(4)];
+					record.record_data[String(2)] = this.circle_sprite.l;
+					break;
+				case "3":
+					record.record_data[String(0)] = this.circle_sprite.m;
+					record.record_data[String(1)] = this.circle_sprite[String(4)];
+					record.record_data[String(2)] = this.circle_sprite.r;
+					break;
+		}
+
+			record.record_data[String(3)] = StrArray[i][1];
+			record.record_data[String(4)] = this.record_bg_img_bool;
+			this.record_bg_img_bool = !this.record_bg_img_bool;
+			this.record_content.addChildAt(record,0);
+		}
+		this.recordString += value;
+		let tmp = this.recordString.split(';'); 
+		let record_count = 20;
+		if (tmp.length > record_count){
+			let loop = this.record_content.numChildren - record_count;
+			for (let i = 0; i < loop; i++) {
+				this.record_content.removeChildAt(this.record_content.numChildren - 1);
+			}
+			this.recordString = "";
+			for(let i = loop; i < tmp.length - 1; i++) {
+				this.recordString += tmp[i] + ";";
+			}
+		}
+		egret.localStorage.setItem("record",this.recordString);
 	}
 }
