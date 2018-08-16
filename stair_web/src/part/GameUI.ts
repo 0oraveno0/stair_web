@@ -45,7 +45,9 @@
 	private clear_record_btn: eui.Button;
 	private record_bg_img_bool = true;
 	private mask_manager = {};
-	constructor(private service: GameService) {
+	private notice = {"visible":false,"text":"正在准备中"};
+	private notice_btn: eui.Label;
+	constructor(private service: GameService, private audio:audio_manager) {
 		super();
 		this.addEventListener(eui.UIEvent.COMPLETE, this.uiCompHandler, this);
         this.skinName = "resource/custom_skin/gameUISkin_v0.exml";
@@ -72,6 +74,7 @@
 	}
 
 	public uiCompHandler(){
+		
 		this.draw_mask(this.record_content,"record")
 
 		this.play_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playBtnHandler, this);
@@ -151,25 +154,38 @@
 	//Button
 
 	public playBtnHandler() {
-		console.log("play");
 
 		if(this.is_playing)
 		{
 			return;
 		}
 
-		this.is_playing = true;
+		this.audio.play_sound("beepfruit_wav");
+		this.play();
+	}
 
+	public play() {
+		console.log("play");
+		if(this.is_playing)
+		{
+			return;
+		}
+
+		this.is_playing = true;
        if (this.total_bet <= 0)
         {
-            //NoticeManager.Instance.showNotice("请投注", NoticeManager.noticeType.Confirm, () => { });
+			this.show_notice("请投注",()=>{this.notice.visible = false});
+			this.auto_playing = false;
+			this.auto_toggle.selected = false;
             this.is_playing = false;
             return;
         }
 
 		if (this.balance < this.total_bet)
         {
-            //NoticeManager.Instance.showNotice("余额不足", NoticeManager.noticeType.Confirm, () => { });
+			this.show_notice("余额不足",()=>{this.notice.visible = false});
+			this.auto_playing = false;
+			this.auto_toggle.selected = false;
             this.is_playing = false;
             return;
         }
@@ -191,8 +207,12 @@
 			}
 		)(this),
         (error) => {
-            console.log(error);
+			this.show_notice(String(error),()=>{this.notice.visible = false});
 			this.loading = false;
+			this.auto_playing = false;
+			this.auto_toggle.selected = false;
+			this.is_playing = false;
+			this.play_btn.touchEnabled = true;
         },() => { });
 	}
 
@@ -200,7 +220,7 @@
 		if(this.is_playing){
 			return;
 		}
-
+		this.audio.play_sound("beepfruit_wav");
 		for(let i = 0; i < 10 ;i++){
 			this.bet_type[String(i)].n = 0;
 		}
@@ -212,6 +232,7 @@
 		if(this.is_playing){
 			return;
 		}
+		this.audio.play_sound("beepfruit_wav");
 		this.bet_type[evt.target.name].n += 1;
 		this.update_total_bet();
 
@@ -221,7 +242,7 @@
 				Timer.addEventListener(
 				egret.TimerEvent.TIMER_COMPLETE,() => {
 					Timer.stop();
-					this.playBtnHandler();
+					this.play();
 				},Timer.start())
 			}
 		}
@@ -231,8 +252,8 @@
 		 if (this.is_playing || this.single_bet >= 50)
             return;
 
-        //resultPanel.SetActive(false);
-        //AudioManager.instance.PlaySound("click");
+		this.result_panel.v.gp = false;
+        this.audio.play_sound("beepfruit_wav");
         for (let i = 0; i < this.single_bet_array.length - 1; i++){
             if (this.single_bet == this.single_bet_array[i])
             {
@@ -247,8 +268,8 @@
        if (this.is_playing || this.single_bet <= 1)
             return;
 
-        //resultPanel.SetActive(false);
-        //AudioManager.instance.PlaySound("click");
+		this.result_panel.v.gp = false;
+        this.audio.play_sound("beepfruit_wav");
         for (let i = 0; i < this.single_bet_array.length; i++)
             if (this.single_bet == this.single_bet_array[i])
             {
@@ -269,14 +290,14 @@
 	public autoBtnHandler() {
 		this.auto_playing = this.auto_toggle.selected;
 		if(this.auto_playing){
-			this.playBtnHandler();
+			this.play();
 		}
 	}
 
-	private test = true;
+	private up_btn_bool = true;
 	public upBtnHandler() {
-		if(this.test == true){
-			this.test = false;
+		if(this.up_btn_bool == true){
+			this.up_btn_bool = false;
 			this.record_gp.height = 880;
 			this.record_gp.anchorOffsetY = 880;
 			this.record_bg_img_sprite = this.record_img[1];
@@ -285,7 +306,7 @@
 			this.up_btn.rotation = 180;
 			this.draw_mask(this.record_content,"record")
 		}else{
-			this.test = true;
+			this.up_btn_bool = true;
 			this.record_gp.height = 182;
 			this.record_gp.anchorOffsetY = 182;
 			this.record_bg_img_sprite = this.record_img[0];
@@ -299,7 +320,6 @@
 		egret.localStorage.setItem("record","");
 		this.record_content.removeChildren();
 		this.record_content.addChild(this.mask_manager["record"]);
-		console.log(this.record_content.numChildren)
 	}
 	public pay_tableBtnHandler(evt) {
 		if(String(evt.target.name) == "true"){
@@ -311,15 +331,12 @@
 	}
 
 	public mute_TgeHandler() {
-		console.log("mute_TgeHandler");
 		if (this.mute_toggle.selected)
 		{
-			//AudioListener.volume = 0;
 			egret.localStorage.setItem("mute_toggle","true");
 		}
 		else
 		{
-			//AudioListener.volume = 1;
 			egret.localStorage.setItem("mute_toggle","false");
 		}
 	}
@@ -402,24 +419,9 @@
 	//Function
 
 	public betCompleteHandler(event: egret.Event){
-		console.log("event");
-		console.log(event);
-		console.log("event.currentTarget");
-		console.log(event.currentTarget);
 		const request = <egret.HttpRequest>event.currentTarget;
-		console.log("request.response");
-		console.log(request.response);
 		this.gameTotalData = JSON.parse(request.response);
-		console.log("this.gameTotalData");
-		console.log(this.gameTotalData);
-		console.log("balance = " + this.gameTotalData.data.balance.toFixed(2))
-		if (this.gameTotalData.data.bouns_game != null){
-			console.log("bouns_game = " + this.gameTotalData.data.bouns_game)
-		}
-		console.log("moneyPool = " + this.gameTotalData.data.moneyPool)
-		console.log("results = " + this.gameTotalData.data.results)
-		console.log("finalScore = " + this.gameTotalData.data.finalScore)
-		this.result();
+		//this.result();
 	}
 
 	public result(){
@@ -564,7 +566,7 @@
 			Timer.addEventListener(
 			egret.TimerEvent.TIMER_COMPLETE,() => {
 				Timer.stop();
-				this.playBtnHandler();
+				this.play();
 			},Timer.start())
 		} else {
 			this.play_btn.touchEnabled = true;
@@ -655,5 +657,11 @@
 			}
 		}
 		egret.localStorage.setItem("record",this.recordString);
+	}
+
+	private show_notice(content:string,confirm_btn){
+		this.notice.visible = true;
+		this.notice.text = content;
+		this.notice_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, confirm_btn, this);
 	}
 }

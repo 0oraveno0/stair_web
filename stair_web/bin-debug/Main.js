@@ -85,6 +85,7 @@ var Main = (function (_super) {
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
         RES.loadGroup("preload");
         this.gameService = GameService.getGameService();
+        this.AudioManager = audio_manager.getAudioManager();
     };
     /**
      * 主题文件加载完成,开始预加载
@@ -155,7 +156,7 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.startCreateScene = function () {
-        this.gameUI = new GameUI(this.gameService);
+        this.gameUI = new GameUI(this.gameService, this.AudioManager);
         this.addChild(this.gameUI);
     };
     /**

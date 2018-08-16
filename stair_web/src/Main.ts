@@ -37,6 +37,8 @@
 
     private gameService: GameService;
 
+    private AudioManager:audio_manager;
+
     private gameUI: GameUI;
 
     protected createChildren(): void {
@@ -83,7 +85,7 @@
         RES.loadGroup("preload");
 
         this.gameService = GameService.getGameService();
-
+        this.AudioManager = audio_manager.getAudioManager();
     }
 
     private isThemeLoadEnd: boolean = false;
@@ -166,7 +168,7 @@
      * Create scene interface
      */
     protected startCreateScene(): void {
-        this.gameUI = new GameUI(this.gameService);
+        this.gameUI = new GameUI(this.gameService, this.AudioManager);
         this.addChild(this.gameUI);
     }
 

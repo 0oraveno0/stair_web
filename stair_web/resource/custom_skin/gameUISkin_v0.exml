@@ -396,6 +396,19 @@
 				</e:skinName>
 			</e:Button>
 		</e:Group>
+		<e:Group width="500" height="350" x="100" y="360" anchorOffsetX="0" anchorOffsetY="0" visible="{notice.visible}">
+			<e:Image width="500" height="350" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="notice_bg_png"/>
+			<e:Label text="{notice.text}" x="40" y="90" anchorOffsetX="0" width="415" anchorOffsetY="0" height="150" verticalAlign="middle" textAlign="center" size="40"/>
+			<e:Button id="notice_btn" label="" x="150" y="263" width="200" height="55">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="confirm_button_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+
+		</e:Group>
 	</e:Group>
 
 </e:Skin>

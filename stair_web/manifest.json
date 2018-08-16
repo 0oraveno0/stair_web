@@ -9,12 +9,13 @@
 	],
 	"game": [
 		"bin-debug/AssetAdapter.js",
+		"bin-debug/audio_manager.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
+		"bin-debug/recordGo.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/element/LoadingUI.js",
 		"bin-debug/part/GameUI.js",
-		"bin-debug/part/recordGo.js",
 		"bin-debug/service/GameService.js"
 	]
 }

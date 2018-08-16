@@ -5,7 +5,7 @@
 			"name": "preload"
 		},
 		{
-			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json,grey_png,record_box 2_png",
+			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json,grey_png,record_box 2_png,beepfruit_wav,confirm_button_png,notice_bg_png,retry_button_png",
 			"name": "resource"
 		}
 	],
@@ -80,6 +80,26 @@
 			"url": "art/record_box 2.png",
 			"type": "image",
 			"name": "record_box 2_png"
+		},
+		{
+			"url": "sound/beepfruit.wav",
+			"type": "sound",
+			"name": "beepfruit_wav"
+		},
+		{
+			"url": "art/notice_bg.png",
+			"type": "image",
+			"name": "notice_bg_png"
+		},
+		{
+			"url": "art/confirm_button.png",
+			"type": "image",
+			"name": "confirm_button_png"
+		},
+		{
+			"url": "art/retry_button.png",
+			"type": "image",
+			"name": "retry_button_png"
 		}
 	]
 }
