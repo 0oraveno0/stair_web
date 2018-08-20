@@ -72,12 +72,11 @@ var GameUI = (function (_super) {
         return _this;
     }
     GameUI.prototype.load_data = function () {
-        this.balance = 1000;
         this.balance_text = String(this.balance) + "元";
         if (egret.localStorage.getItem("winMoney") != null) {
             this.winMoney = Number(egret.localStorage.getItem("winMoney"));
         }
-        this.winMoney_text = this.winMoney.toFixed(2) + "元";
+        this.winMoney_text = "赢得金钱" + this.winMoney.toFixed(2) + "元";
         if (egret.localStorage.getItem("mute_toggle") == "true") {
             this.mute_toggle.selected = true;
         }
@@ -87,6 +86,16 @@ var GameUI = (function (_super) {
         this.setRecord(egret.localStorage.getItem("record"));
     };
     GameUI.prototype.uiCompHandler = function () {
+        this.username = egret.getOption('username') ? egret.getOption('username') : 'fish001';
+        this.balance = Number(egret.getOption('balance') ? egret.getOption('balance') : '999');
+        this.token = egret.getOption('token') ? egret.getOption('token') : 'AAD4MFJYD40M9BI012MVX5O8RHK6V5';
+        //this.username = egret.getOption('username') ? egret.getOption('username') : 'zhangyanli';
+        //this.token = egret.getOption('token') ? egret.getOption('token') : '624ee884f9314fd1a7438de68f08474c';
+        //this.username = egret.getOption('username');
+        //this.token = egret.getOption('token');
+        //this.username = egret.getOption('username');
+        //this.balance = Number(egret.getOption('balance'));
+        //this.token = egret.getOption('token');
         this.draw_mask(this.record_content, "record");
         this.play_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playBtnHandler, this);
         this.reset_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.resetBtnHandler, this);
@@ -105,7 +114,7 @@ var GameUI = (function (_super) {
         this.bet_btn_addEventListener();
     };
     GameUI.prototype.draw_mask = function (t, string) {
-        if (this.mask_manager[string] != null) {
+        if (t.contains((this.mask_manager[string]))) {
             t.removeChild(this.mask_manager[string]);
         }
         this.mask_manager[string] = new egret.Shape();
@@ -153,13 +162,19 @@ var GameUI = (function (_super) {
             _bet_type += this.bet_type[String(i)].n + ",";
         }
         _bet_type += this.bet_type[String(9)].n;
-        this.service.bet(_bet_type, String(this.single_bet), String(this.total_bet), this.gamecode, (function (that) {
+        this.service.bet(this.username, _bet_type, String(this.single_bet), String(this.total_bet), this.gamecode, this.token, (function (that) {
             return function (event) {
                 return that.betCompleteHandler.bind(that)(event);
             };
         })(this), function (error) {
-            _this.show_notice("连接失败", function () { _this.notice.visible = false; });
+            _this.show_notice(String(error), function () { _this.notice.visible = false; });
+            _this.balance += _this.total_bet;
+            _this.balance_text = String(_this.balance) + "元";
             _this.loading = false;
+            _this.auto_playing = false;
+            _this.auto_toggle.selected = false;
+            _this.is_playing = false;
+            _this.play_btn.touchEnabled = true;
         }, function () { });
     };
     GameUI.prototype.resetBtnHandler = function () {
@@ -344,13 +359,20 @@ var GameUI = (function (_super) {
         var _this = this;
         var request = event.currentTarget;
         this.gameTotalData = JSON.parse(request.response);
-        //this.result();
-        this.show_notice("连接失败", function () { _this.notice.visible = false; });
-        this.loading = false;
-        this.auto_playing = false;
-        this.auto_toggle.selected = false;
-        this.is_playing = false;
-        this.play_btn.touchEnabled = true;
+        console.log(this.gameTotalData.data);
+        if (this.gameTotalData.data == null) {
+            this.show_notice("网络错误", function () { _this.notice.visible = false; });
+            this.balance += this.total_bet;
+            this.balance_text = String(this.balance) + "元";
+            this.loading = false;
+            this.auto_playing = false;
+            this.auto_toggle.selected = false;
+            this.is_playing = false;
+            this.play_btn.touchEnabled = true;
+        }
+        else {
+            this.result();
+        }
     };
     GameUI.prototype.result = function () {
         this.loading = false;
@@ -436,19 +458,28 @@ var GameUI = (function (_super) {
             this.result_panel.v.gp = true;
             var speed = 300;
             var _loop_1 = function (i) {
-                var Timer = new egret.Timer(i * speed, 1);
-                Timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
-                    _this.result_panel.v[String(i)] = true;
+                if (this_1.skip_btn.selected) {
+                    this_1.result_panel.v[String(i)] = true;
                     if (i == 4) {
-                        _this.end_turn();
+                        this_1.end_turn();
                     }
-                }, Timer.start());
+                }
+                else {
+                    var Timer = new egret.Timer(i * speed, 1);
+                    Timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
+                        _this.result_panel.v[String(i)] = true;
+                        if (i == 4) {
+                            _this.end_turn();
+                        }
+                    }, Timer.start());
+                }
             };
+            var this_1 = this;
             for (var i = 0; i < 5; i++) {
                 _loop_1(i);
             }
-            this.winMoney += Number(w_num.toFixed(2));
-            this.winMoney_text = w_num.toFixed(2) + "元";
+            this.winMoney += w_num;
+            this.winMoney_text = "赢得金钱" + this.winMoney.toFixed(2) + "元";
             this.balance = Number(this.gameTotalData.data.balance.toFixed(2));
             this.balance_text = String(this.balance) + "元";
             this.finalScore = Number(w_num.toFixed(2));
@@ -456,21 +487,27 @@ var GameUI = (function (_super) {
             egret.localStorage.setItem("winMoney", String(this.winMoney.toFixed(2)));
         }
         else {
+            this.balance = Number(this.gameTotalData.data.balance.toFixed(2));
+            this.balance_text = String(this.balance) + "元";
             this.end_turn();
         }
-        var time = new Date;
-        var _record = (String(r_num) + "," +
-            String(time.getFullYear()) + "年" +
-            String(time.getMonth()) + "月" +
-            String(time.getDay()) + "日" +
-            String(time.getHours()) + "时" +
-            String(time.getMinutes()) + "分" +
-            String(time.getSeconds()) + "秒;");
+        var _record = (String(r_num) + "," + this.formatDate() + ";");
         this.setRecord(_record);
+    };
+    GameUI.prototype.formatDate = function () {
+        var Dates = new Date();
+        var Year = Dates.getFullYear();
+        var Months = (Dates.getMonth() + 1) < 10 ? '0' + (Dates.getMonth() + 1) : (Dates.getMonth() + 1);
+        var Day = Dates.getDate() < 10 ? '0' + Dates.getDate() : Dates.getDate();
+        var Hours = Dates.getHours() < 10 ? '0' + Dates.getHours() : Dates.getHours();
+        var Minutes = Dates.getMinutes() < 10 ? '0' + Dates.getMinutes() : Dates.getMinutes();
+        var Seconds = Dates.getSeconds() < 10 ? '0' + Dates.getSeconds() : Dates.getSeconds();
+        return Year + '年' + Months + '月' + Day + '日' + Hours + '時' + Minutes + '分' + Seconds + '秒';
     };
     GameUI.prototype.end_turn = function () {
         var _this = this;
         this.is_playing = false;
+        this.skip_btn.selected = false;
         if (this.auto_playing) {
             var Timer_2 = new egret.Timer(1, 1);
             Timer_2.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
@@ -485,7 +522,13 @@ var GameUI = (function (_super) {
     GameUI.prototype.line_move = function (_line) {
         var _this = this;
         this.line[String(_line)].s = 0;
-        var speed = 10;
+        var speed;
+        if (this.skip_btn.selected) {
+            speed = 30;
+        }
+        else {
+            speed = 10;
+        }
         var Timer = new egret.Timer(speed / this.line[String(_line)].l, this.line[String(_line)].l / speed);
         Timer.addEventListener(egret.TimerEvent.TIMER, function () {
             _this.line[String(_line)].s += speed / _this.line[String(_line)].l;

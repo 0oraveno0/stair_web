@@ -1,9 +1,8 @@
  class GameService {
 	// private  host = 'http://192.168.0.120:8000/';
-    // private  host = 'http://192.168.0.101/';
+    //private static host= "http://192.168.0.101/";
     private static host= "http://192.168.0.101/";
     private static AASlotUrl = "hecslot/newsubmitbet";
-    private static token = "AAD4MFJYD40M9BI012MVX5O8RHK6V5";
     private static gamecode = "Stair";
     private static loginname = "fish001";
     private gameUI: GameUI;
@@ -14,12 +13,30 @@
         const protocol = document.location.protocol === 'https:' ? 'https' : 'http';
     }
 
-    public bet(betType: string , singlebet: string , totalbet: string , gamecode: string , onComplete, onIOError, onProgress) {
-        console.log("loginname=" + GameService.loginname + "&singlebet=" + singlebet + "&lane=" + betType + "&totalmoney=" + totalbet + "&gamecode=" + gamecode);
+    /*public void getBalance(System.Action done)
+    {
+        Dictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("param", des.DESEnCode("loginname=" + PlayerPrefs.GetString("UserName")));
+        StartCoroutine(POST(PlayerPrefs.GetString("AASlotUrl") + "hecslot/getbalance/" + System.Guid.NewGuid().ToString(), (float data, Dictionary<string, string> headers) =>
+        {
+            PlayerPrefs.SetFloat("Balance", data);
+            done();
+        }, (string hi, int code) => { }, param));
+    }*/
+
+    public getBalance(username,token,onComplete,onIOError,onProgress){
         let paramJson = {
-           param : GameService.stringToHex(GameService.des('garEcr8s',"loginname=" + GameService.loginname + "&singlebet=" + singlebet + "&lane=" + betType + "&totalmoney=" + totalbet + "&gamecode=" + gamecode,true,1,'garEcr8s',1))
+            param : GameService.stringToHex(GameService.des('garEcr8s',"loginname=" + username,true,1,'garEcr8s',1))
+        }
+         this.httpReq(GameService.AASlotUrl + "hecslot/getbalance/", JSON.stringify(paramJson), token, onComplete, onIOError, onProgress, "application/json");
+    }
+
+    public bet(username:string,betType: string , singlebet: string , totalbet: string , gamecode: string ,token, onComplete, onIOError, onProgress) {
+        console.log("loginname=" + username + "&singlebet=" + singlebet + "&lane=" + betType + "&totalmoney=" + totalbet + "&gamecode=" + gamecode);
+        let paramJson = {
+           param : GameService.stringToHex(GameService.des('garEcr8s',"loginname=" + username + "&singlebet=" + singlebet + "&lane=" + betType + "&totalmoney=" + totalbet + "&gamecode=" + gamecode,true,1,'garEcr8s',1))
         };
-        this.httpReq(GameService.AASlotUrl, JSON.stringify(paramJson), GameService.token, onComplete, onIOError, onProgress, "application/json");
+        this.httpReq(GameService.AASlotUrl, JSON.stringify(paramJson), token, onComplete, onIOError, onProgress, "application/json");
     }
 
     private httpReq(url, data:string, token, onComplete, onIOError, onProgress, type) {
