@@ -58,12 +58,12 @@
 	}
 
 	public load_data(){
-		this.balance_text = String(this.balance) + "元";
+		this.balance_text = this.balance.toFixed(2) + "元";
 		
 		if(egret.localStorage.getItem("winMoney") != null){
 			this.winMoney = Number(egret.localStorage.getItem("winMoney"));
 		}
-		this.winMoney_text = "赢得金钱" + this.winMoney.toFixed(2) + "元";
+		this.winMoney_text = "累积嬴得" + this.winMoney.toFixed(2) + "元";
 
 		if (egret.localStorage.getItem("mute_toggle") == "true"){
 			this.mute_toggle.selected = true;
@@ -77,17 +77,17 @@
 	public uiCompHandler(){
 		
 
-      	this.username = egret.getOption('username') ? egret.getOption('username') : 'fish001';
-		this.balance = Number(egret.getOption('balance')? egret.getOption('balance') : '999');
-        this.token = egret.getOption('token') ? egret.getOption('token') : 'AAD4MFJYD40M9BI012MVX5O8RHK6V5';
+      	//this.username = egret.getOption('username') ? egret.getOption('username') : 'fish001';
+		//this.balance = Number(egret.getOption('balance')? egret.getOption('balance') : '1.56');
+        //this.token = egret.getOption('token') ? egret.getOption('token') : 'AAD4MFJYD40M9BI012MVX5O8RHK6V5';
         //this.username = egret.getOption('username') ? egret.getOption('username') : 'zhangyanli';
         //this.token = egret.getOption('token') ? egret.getOption('token') : '624ee884f9314fd1a7438de68f08474c';
         //this.username = egret.getOption('username');
         //this.token = egret.getOption('token');
       	
-		//this.username = egret.getOption('username');
-		//this.balance = Number(egret.getOption('balance'));
-        //this.token = egret.getOption('token');
+		this.username = egret.getOption('username');
+		this.balance = Number(egret.getOption('balance'));
+        this.token = egret.getOption('token');
 
 		this.draw_mask(this.record_content,"record")
 
@@ -149,7 +149,7 @@
 					"16":{s:0,v:false,l:80},"17":{s:0,v:false,l:80}};
 	private circle = {"tl":"ig_x_gray_icon","tr":"ig_x_gray_icon",
 					"dl":"ig_single_gray_icon","dr":"ig_dub_gray_icon"};
-	private circle_sprite = {"tw":"ig_x_gray_icon","tb":"ig_x_gray_icon",
+	private circle_sprite = {"tw":"ig_x_gray_icon","tb":"ig_arrow_black_icon",
 							"dlw":"ig_single_gray_icon","drw":"ig_dub_gray_icon",
 							"dlb":"ig_single_black_icon","drb":"ig_dub_black_icon",
 							"s":"sb_single_icon","m":"sb_dub_icon",
@@ -209,7 +209,7 @@
 		this.play_btn.touchEnabled = false;
 		this.loading = true;
 		this.balance -= this.total_bet;
-		this.balance_text = String(this.balance) + "元";
+		this.balance_text = this.balance.toFixed(2) + "元";
 		let _bet_type = "";
 		for(let i = 0;i<9;i++){
 			_bet_type += this.bet_type[String(i)].n + ",";
@@ -225,7 +225,7 @@
         (error) => {
 			this.show_notice(String(error),()=>{this.notice.visible = false});
 			this.balance += this.total_bet;
-			this.balance_text = String(this.balance) + "元";
+			this.balance_text = this.balance.toFixed(2) + "元";
 			this.loading = false;
 			this.auto_playing = false;
 			this.auto_toggle.selected = false;
@@ -443,7 +443,7 @@
 		if(this.gameTotalData.data == null){
 			this.show_notice("网络错误",()=>{this.notice.visible = false});
 			this.balance += this.total_bet;
-			this.balance_text = String(this.balance) + "元";
+			this.balance_text = this.balance.toFixed(2) + "元";
 			this.loading = false;
 			this.auto_playing = false;
 			this.auto_toggle.selected = false;
@@ -486,18 +486,18 @@
             this.bet_type[String(2)].w = true;
             this.line_4 = false;
         }
-
+		console.log(r_num == 0 || r_num == 3);
         if (r_num == 0 || r_num == 3)
         {
             this.bet_type[String(5)].w = true;
-            this.circle.tl = this.circle_sprite.tb;
-            this.circle.tr = this.circle_sprite.tw;
+            this.circle.tl = this.circle_sprite.tw;
+            this.circle.tr = this.circle_sprite.tb;
         }
         else
         {
             this.bet_type[String(4)].w = true;
-            this.circle.tl = this.circle_sprite.tw;
-            this.circle.tr = this.circle_sprite.tb;
+            this.circle.tl = this.circle_sprite.tb;
+            this.circle.tr = this.circle_sprite.tw;
         }
 
 		for(let i = 0; i< 18;i++){
@@ -572,10 +572,10 @@
 				}
 			}
 			this.winMoney += w_num;
-			this.winMoney_text = "赢得金钱" + this.winMoney.toFixed(2) + "元";
+			this.winMoney_text = "累积嬴得" + this.winMoney.toFixed(2) + "元";
 
 			this.balance = Number(this.gameTotalData.data.balance.toFixed(2));
-			this.balance_text = String(this.balance) + "元";
+			this.balance_text = this.balance.toFixed(2) + "元";
 
 			this.finalScore = Number(w_num.toFixed(2));
 			this.finalScore_text = w_num.toFixed(2) + "元";
@@ -583,7 +583,7 @@
 			egret.localStorage.setItem("winMoney",String(this.winMoney.toFixed(2)));
 		} else {
 			this.balance = Number(this.gameTotalData.data.balance.toFixed(2));
-			this.balance_text = String(this.balance) + "元";
+			this.balance_text = this.balance.toFixed(2) + "元";
 			this.end_turn();
 		}
 

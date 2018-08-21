@@ -5,7 +5,7 @@
 			"name": "preload"
 		},
 		{
-			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json,grey_png,record_box 2_png,beepfruit_wav,confirm_button_png,notice_bg_png,retry_button_png,speed_up_button_able_png",
+			"keys": "UI_json,UI_2_json,UI_3_json,UI_4_json,UI_5_json,line_png,line_b_png,mute_button_disable_type8_png,mute_button_enable_type8_png,description_json,grey_png,record_box 2_png,beepfruit_wav,confirm_button_png,notice_bg_png,retry_button_png,speed_up_button_able_png,confirm_button_pressed_png",
 			"name": "resource"
 		}
 	],
@@ -110,6 +110,11 @@
 			"url": "art/speed_up_button_able.png",
 			"type": "image",
 			"name": "speed_up_button_able2_png"
+		},
+		{
+			"url": "art/confirm_button_pressed.png",
+			"type": "image",
+			"name": "confirm_button_pressed_png"
 		}
 	]
 }

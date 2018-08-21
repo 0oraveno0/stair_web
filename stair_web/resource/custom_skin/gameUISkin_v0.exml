@@ -2,7 +2,7 @@
 <e:Skin class="gameUISkin_v0" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Group width="720" height="1280" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.89" scaleY="0.89">
 		<e:Image width="720" height="1280" anchorOffsetX="0" anchorOffsetY="0" y="0" x="0" fillMode="scale" source="bg" locked="true"/>
-		<e:Button id="exit_btn" label="" x="0" y="0" anchorOffsetX="0" width="110" anchorOffsetY="0" height="85" visible="false">
+		<e:Button id="exit_btn" label="" x="0" y="0" anchorOffsetX="0" width="110" anchorOffsetY="0" height="85" visible="false" locked="true">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="back_button"/>
@@ -10,7 +10,7 @@
 			</e:Skin>
 		</e:skinName>
 		</e:Button>
-		<e:Button id="pay_table_btn" label="" x="497.67" y="0" anchorOffsetX="110" width="110" anchorOffsetY="0" height="87" name="true">
+		<e:Button id="pay_table_btn" label="" x="497.67" y="0" anchorOffsetX="110" width="110" anchorOffsetY="0" height="87" name="true" locked="true">
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="paytable_button"/>
@@ -19,9 +19,9 @@
 		</e:skinName>
 		</e:Button>
 
-		<e:Label x="156.33" y="92.33" anchorOffsetX="0" width="248.71" anchorOffsetY="0" height="50" verticalAlign="middle" textAlign="center" text="{balance_text}" size="40"/>
-		<e:Label x="79" y="188" anchorOffsetX="0" width="335" anchorOffsetY="0" height="52.67" verticalAlign="middle" textAlign="center" text="{winMoney_text}" size="30"/>
-		<e:ToggleButton id="mute_toggle" label="" x="412.00000000000006" y="88.00000000000001" anchorOffsetX="0" width="81" anchorOffsetY="0" height="63" scaleX="1" scaleY="1">
+		<e:Label x="156.33" y="92.33" anchorOffsetX="0" width="248.71" anchorOffsetY="0" height="50" verticalAlign="middle" textAlign="center" text="{balance_text}" size="40" locked="true"/>
+		<e:Label x="79" y="188" anchorOffsetX="0" width="335" anchorOffsetY="0" height="52.67" verticalAlign="middle" textAlign="center" text="{winMoney_text}" size="30" locked="true"/>
+		<e:ToggleButton id="mute_toggle" label="" x="412.00000000000006" y="88.00000000000001" anchorOffsetX="0" width="81" anchorOffsetY="0" height="63" scaleX="1" scaleY="1" locked="true">
 			<e:skinName>
 			<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="mute_button_enable_type8_png" source.down="mute_button_disable_type8_png"/>
@@ -204,16 +204,16 @@
 			</e:Button>
 		</e:Group>
 		<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true" locked="true">
-			<e:Image x="-3" y="-5" width="90" height="90" scaleX="1.1" scaleY="1.1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.0.w}"> </e:Image>
-			<e:Image x="-3" y="85" width="90" height="90" scaleX="1.1" scaleY="1.1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.1.w}"> </e:Image>
-			<e:Image x="-3" y="245" scaleX="1.1" scaleY="1.1" width="90" height="90" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.2.w}"> </e:Image>
-			<e:Image x="-3" y="335" scaleX="1.1" scaleY="1.1" width="90" height="90" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.3.w}"> </e:Image>
-			<e:Image x="-3" y="495" width="90" height="90" scaleX="1.1" scaleY="1.1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.4.w}"> </e:Image>
-			<e:Image x="-3" y="585" width="90" height="90" scaleX="1.1" scaleY="1.1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.5.w}"> </e:Image>
-			<e:Image x="-3" y="760" scaleX="1.1" scaleY="1.1" width="90" height="76" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.6.w}"> </e:Image>
-			<e:Image x="-3" y="845" scaleX="1.1" scaleY="1.1" width="90" height="76" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.7.w}"> </e:Image>
-			<e:Image x="-3" y="940" scaleX="1.1" scaleY="1.1" width="90" height="76" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.8.w}"> </e:Image>
-			<e:Image x="-3" y="1030" scaleX="1.1" scaleY="1.1" width="90" height="76" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.9.w}"> </e:Image>
+			<e:Image x="-6" y="-8" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.0.w}"> </e:Image>
+			<e:Image x="-7" y="83" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.1.w}"> </e:Image>
+			<e:Image x="-7" y="242" scaleX="1" scaleY="1" width="105" height="105" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.2.w}"> </e:Image>
+			<e:Image x="-7" y="333" scaleX="1" scaleY="1" width="105" height="105" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.3.w}"> </e:Image>
+			<e:Image x="-7" y="493" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.4.w}"> </e:Image>
+			<e:Image x="-7" y="583" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.5.w}"> </e:Image>
+			<e:Image x="-7" y="761" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.6.w}"> </e:Image>
+			<e:Image x="-7" y="845" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.7.w}"> </e:Image>
+			<e:Image x="-7" y="940" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.8.w}"> </e:Image>
+			<e:Image x="-7" y="1030" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.9.w}"> </e:Image>
 		</e:Group>
 			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true" locked="true">
 				<e:Label id="bet_btn_20" x="95" y="15" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="0" text="{bet_type.0.n}" size="40"/>
@@ -404,16 +404,18 @@
 				</e:skinName>
 			</e:Button>
 		</e:Group>
-		<e:Group width="500" height="350" x="100" y="360" anchorOffsetX="0" anchorOffsetY="0" visible="{notice.visible}" locked="true">
-			<e:Image width="500" height="350" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="notice_bg_png"/>
-			<e:Label text="{notice.text}" x="40" y="90" anchorOffsetX="0" width="415" anchorOffsetY="0" height="150" verticalAlign="middle" textAlign="center" size="40"/>
-			<e:Button id="notice_btn" label="" x="150" y="263" width="200" height="55">
+		<e:Group width="720" height="1280" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" visible="{notice.visible}" locked="true">
+			<e:Image width="720" height="1280" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="grey_png"/>
+			<e:Image width="720" height="425" x="0" y="370" anchorOffsetX="0" anchorOffsetY="0" source="notice_bg_png"/>
+			<e:Label text="{notice.text}" x="20" y="460" anchorOffsetX="0" width="675" anchorOffsetY="0" height="220" verticalAlign="middle" textAlign="center" size="50"/>
+			<e:Button id="notice_btn" label="" x="243.55" y="696.1" width="255.44" height="80.46" anchorOffsetY="0" anchorOffsetX="0">
 				<e:skinName>
 					<e:Skin states="up,down,disabled">
-					<e:Image width="100%" height="100%" source="confirm_button_png"/>
+					<e:Image width="100%" height="100%" source="confirm_button_png" source.down="confirm_button_pressed_png"/>
 					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 					</e:Skin>
 				</e:skinName>
+
 			</e:Button>
 
 		</e:Group>

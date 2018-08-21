@@ -1450,6 +1450,7 @@ window.skins={};
 				,
 				new eui.State ("down",
 					[
+						new eui.SetProperty("_Image1","source","confirm_button_pressed_png")
 					])
 				,
 				new eui.State ("disabled",
@@ -1461,6 +1462,7 @@ window.skins={};
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
+			this._Image1 = t;
 			t.percentHeight = 100;
 			t.source = "confirm_button_png";
 			t.percentWidth = 100;
@@ -2710,8 +2712,8 @@ window.skins={};
 		t.label = "";
 		t.scaleX = 1;
 		t.scaleY = 1;
-		t.width = 205;
-		t.x = -12.14;
+		t.width = 212;
+		t.x = -16.14;
 		t.y = 1115.3;
 		t.skinName = gameUISkin_v0$Skin29;
 		return t;
@@ -3002,22 +3004,33 @@ window.skins={};
 		this._Group20 = t;
 		t.anchorOffsetX = 0;
 		t.anchorOffsetY = 0;
-		t.height = 350;
-		t.width = 500;
-		t.x = 100;
-		t.y = 360;
-		t.elementsContent = [this._Image42_i(),this._Label6_i(),this.notice_btn_i()];
+		t.height = 1280;
+		t.width = 720;
+		t.x = 0;
+		t.y = 0;
+		t.elementsContent = [this._Image42_i(),this._Image43_i(),this._Label6_i(),this.notice_btn_i()];
 		return t;
 	};
 	_proto._Image42_i = function () {
 		var t = new eui.Image();
 		t.anchorOffsetX = 0;
 		t.anchorOffsetY = 0;
-		t.height = 350;
-		t.source = "notice_bg_png";
-		t.width = 500;
+		t.height = 1280;
+		t.source = "grey_png";
+		t.width = 720;
 		t.x = 0;
 		t.y = 0;
+		return t;
+	};
+	_proto._Image43_i = function () {
+		var t = new eui.Image();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 425;
+		t.source = "notice_bg_png";
+		t.width = 720;
+		t.x = 0;
+		t.y = 370;
 		return t;
 	};
 	_proto._Label6_i = function () {
@@ -3025,23 +3038,25 @@ window.skins={};
 		this._Label6 = t;
 		t.anchorOffsetX = 0;
 		t.anchorOffsetY = 0;
-		t.height = 150;
-		t.size = 40;
+		t.height = 220;
+		t.size = 50;
 		t.textAlign = "center";
 		t.verticalAlign = "middle";
-		t.width = 415;
-		t.x = 40;
-		t.y = 90;
+		t.width = 675;
+		t.x = 20;
+		t.y = 460;
 		return t;
 	};
 	_proto.notice_btn_i = function () {
 		var t = new eui.Button();
 		this.notice_btn = t;
-		t.height = 55;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 80.46;
 		t.label = "";
-		t.width = 200;
-		t.x = 150;
-		t.y = 263;
+		t.width = 255.44;
+		t.x = 243.55;
+		t.y = 696.1;
 		t.skinName = gameUISkin_v0$Skin36;
 		return t;
 	};
@@ -3187,7 +3202,7 @@ window.skins={};
 		t.size = 19;
 		t.textAlign = "right";
 		t.verticalAlign = "middle";
-		t.width = 260;
+		t.width = 268;
 		t.x = 185;
 		t.y = 0;
 		return t;
