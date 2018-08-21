@@ -1,10 +1,11 @@
  class GameService {
 	// private  host = 'http://192.168.0.120:8000/';
     //private static host= "http://192.168.0.101/";
-    private static host= "http://192.168.0.101/";
+    //private static host= "http://192.168.0.101/";
+    private static host="http://bj.mmht88.com/";
     private static AASlotUrl = "hecslot/newsubmitbet";
     private static gamecode = "Stair";
-    private static loginname = "fish001";
+    //private static loginname = "fish001";
     private gameUI: GameUI;
 
     public static instance?: GameService;

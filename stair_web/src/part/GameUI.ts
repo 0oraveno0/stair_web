@@ -41,6 +41,7 @@
 	private record_bg_img_sprite = this.record_img[0];
 	private	record_gp:eui.Group;
 	private	record_content:eui.Group;
+	private record_scroller:eui.Scroller;
 	private up_btn: eui.Button;
 	private clear_record_btn: eui.Button;
 	private record_bg_img_bool = true;
@@ -89,7 +90,7 @@
 		this.balance = Number(egret.getOption('balance'));
         this.token = egret.getOption('token');
 
-		this.draw_mask(this.record_content,"record")
+		//this.draw_mask(this.record_content,"record")
 
 		this.play_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playBtnHandler, this);
 		this.reset_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.resetBtnHandler, this);
@@ -119,7 +120,7 @@
 		this.mask_manager[string].graphics.beginFill(0x0000ff);
 		this.mask_manager[string].graphics.drawRoundRect(0,0,t.width,t.height,25);
 		this.mask_manager[string].graphics.endFill();
-		this.record_content.addChild(this.mask_manager[string]);
+		t.addChild(this.mask_manager[string]);
 		t.mask = this.mask_manager[string];
 	}
 
@@ -320,18 +321,20 @@
 			this.record_gp.anchorOffsetY = 880;
 			this.record_bg_img_sprite = this.record_img[1];
 			this.record_bg_img.height = 872;
-			this.record_content.height = 750;
+			//this.record_content.height = 750;
+			this.record_scroller.height = 750;
 			this.up_btn.rotation = 180;
-			this.draw_mask(this.record_content,"record")
+			//this.draw_mask(this.record_content,"record")
 		}else{
 			this.up_btn_bool = true;
 			this.record_gp.height = 182;
 			this.record_gp.anchorOffsetY = 182;
 			this.record_bg_img_sprite = this.record_img[0];
 			this.record_bg_img.height = 175;
-			this.record_content.height = 55;
+			//this.record_content.height = 55;
+			this.record_scroller.height = 55;
 			this.up_btn.rotation = 0;
-			this.draw_mask(this.record_content,"record")
+			//this.draw_mask(this.record_content,"record")
 		}
 	}
 	public clear_recordBtnHandler() {

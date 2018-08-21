@@ -290,10 +290,10 @@ var GameService = (function () {
     }; //end of des_createKeys
     // private  host = 'http://192.168.0.120:8000/';
     //private static host= "http://192.168.0.101/";
-    GameService.host = "http://192.168.0.101/";
+    //private static host= "http://192.168.0.101/";
+    GameService.host = "http://bj.mmht88.com/";
     GameService.AASlotUrl = "hecslot/newsubmitbet";
     GameService.gamecode = "Stair";
-    GameService.loginname = "fish001";
     return GameService;
 }());
 __reflect(GameService.prototype, "GameService");

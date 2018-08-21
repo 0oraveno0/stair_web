@@ -203,19 +203,8 @@
 			</e:skinName>
 			</e:Button>
 		</e:Group>
-		<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true" locked="true">
-			<e:Image x="-6" y="-8" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.0.w}"> </e:Image>
-			<e:Image x="-7" y="83" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.1.w}"> </e:Image>
-			<e:Image x="-7" y="242" scaleX="1" scaleY="1" width="105" height="105" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.2.w}"> </e:Image>
-			<e:Image x="-7" y="333" scaleX="1" scaleY="1" width="105" height="105" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.3.w}"> </e:Image>
-			<e:Image x="-7" y="493" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.4.w}"> </e:Image>
-			<e:Image x="-7" y="583" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.5.w}"> </e:Image>
-			<e:Image x="-7" y="761" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.6.w}"> </e:Image>
-			<e:Image x="-7" y="845" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.7.w}"> </e:Image>
-			<e:Image x="-7" y="940" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.8.w}"> </e:Image>
-			<e:Image x="-7" y="1030" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.9.w}"> </e:Image>
-		</e:Group>
-			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true" locked="true">
+
+			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true">
 				<e:Label id="bet_btn_20" x="95" y="15" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="0" text="{bet_type.0.n}" size="40"/>
 				<e:Label id="bet_btn_21" x="95" y="105" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="1" text="{bet_type.1.n}" size="40"/>
 				<e:Label id="bet_btn_22" x="95" y="265" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="2" text="{bet_type.2.n}" size="40"/>
@@ -226,6 +215,18 @@
 				<e:Label id="bet_btn_27" x="95" y="855" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="7" text="{bet_type.7.n}" size="40"/>
 				<e:Label id="bet_btn_28" x="95" y="945" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="8" text="{bet_type.8.n}" size="40"/>
 				<e:Label id="bet_btn_29" x="95" y="1035" width="75" height="65" verticalAlign="middle" textAlign="center" touchEnabled="true" name="9" text="{bet_type.9.n}" size="40"/>
+			</e:Group>
+			<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true">
+				<e:Image x="-6" y="-8" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.0.w}"/>
+				<e:Image x="-7" y="83" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.1.w}"/>
+				<e:Image x="-7" y="242" scaleX="1" scaleY="1" width="105" height="105" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.2.w}"/>
+				<e:Image x="-7" y="333" scaleX="1" scaleY="1" width="105" height="105" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.3.w}"/>
+				<e:Image x="-7" y="493" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.4.w}"/>
+				<e:Image x="-7" y="583" width="105" height="105" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" source="win_effect" visible="{bet_type.5.w}"/>
+				<e:Image x="-7" y="761" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.6.w}"/>
+				<e:Image x="-7" y="845" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.7.w}"/>
+				<e:Image x="-7" y="940" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.8.w}"/>
+				<e:Image x="-7" y="1030" scaleX="1" scaleY="1" width="105" height="85" anchorOffsetX="0" anchorOffsetY="0" source="win_effect2" visible="{bet_type.9.w}"/>
 			</e:Group>
 		<e:Group width="188" height="1206" x="2.5" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" touchThrough="true" locked="true">
 			<e:Button id="bet_btn_0" x="0" y="0" width="90" height="90" scaleX="1" scaleY="1" label="" name="0">
@@ -323,7 +324,7 @@
 		</e:Group>
 
 		</e:Group>
-		<e:Group id="record_gp" width="500" height="182" x="0" y="1280" anchorOffsetX="0" anchorOffsetY="182" scaleY="1" locked="true">
+		<e:Group id="record_gp" width="500" height="182" x="0" y="1280" anchorOffsetX="0" anchorOffsetY="182" scaleY="1">
 		<e:Group width="500" height="182" x="0" y="182" scaleX="1" scaleY="1" anchorOffsetY="182">
 			<e:Image id="record_bg_img" width="470" height="175" x="12" y="0" anchorOffsetX="0" anchorOffsetY="0" fillMode="scale" blendMode="normal" source="{record_bg_img_sprite}"/>
 			<e:Button id="up_btn" label="" x="415" y="55" anchorOffsetX="60" width="120" height="88" anchorOffsetY="44">
@@ -343,12 +344,15 @@
 				</e:Skin>
 			</e:skinName>
 			</e:Button>
+			<e:Scroller id="record_scroller" width="456" height="55" x="18.5" y="110" scrollPolicyH="off" scrollPolicyV="on" anchorOffsetY="0">
+				<e:Group id="record_content" anchorOffsetX="0" width="456" height="55" anchorOffsetY="0" y="2.57">
+					<e:layout>
+						<e:VerticalLayout/>
+					</e:layout>
+				</e:Group>
+			</e:Scroller>
 		</e:Group>
-			<e:Group id="record_content" width="456" height="55" x="18.5" y="110" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
-				<e:layout>
-				<e:VerticalLayout gap="10"/>
-				</e:layout>
-			</e:Group>
+
 
 		</e:Group>
 		<e:Group width="437" height="514" x="30" y="247" anchorOffsetX="0" anchorOffsetY="0" visible="{result_panel.v.gp}" locked="true">
